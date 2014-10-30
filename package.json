@@ -1,0 +1,38 @@
+{
+  "name": "appcelerator.swagger",
+  "description": "Connect to Swagger defined APIs from API Builder",
+  "version": "1.0.0",
+  "author": "Dawson Toth",
+  "license": "",
+  "framework": "none",
+  "keywords": [
+    "apibuilder",
+    "apibuilder-connector"
+  ],
+  "repository": {},
+  "scripts": {
+    "start": "appc install && node ./app.js",
+    "test": "grunt"
+  },
+  "private": true,
+  "dependencies": {
+    "apibuilder": "^0.0.1",
+    "async": "^0.9.0",
+    "highlight.js": "^8.2.0",
+    "lodash": "^2.4.1",
+    "pkginfo": "^0.3.0",
+    "request": "^2.45.0",
+    "underscore.string": "^2.3.3"
+  },
+  "appcelerator": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-env": "^0.4.1",
+    "grunt-mocha-test": "^0.11.0",
+    "istanbul": "^0.3.2",
+    "mocha": "^1.21.4",
+    "should": "^4.0.4"
+  }
+}
