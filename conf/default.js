@@ -1,6 +1,7 @@
 module.exports = {
 	// Configure connector.
 	swaggerDocs: '',
+	dynamicallyLoadModels: true,
 
 	verbMap: {
 		POST: 'create',

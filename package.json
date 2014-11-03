@@ -1,24 +1,32 @@
 {
-  "name": "appcelerator.swagger",
+  "name": "appc.swagger",
   "description": "Connect to Swagger defined APIs from API Builder",
   "version": "1.0.0",
+  "main": "index.js",
   "author": "Dawson Toth",
   "license": "",
   "framework": "none",
   "keywords": [
     "apibuilder",
-    "apibuilder-connector"
+    "apibuilder-connector",
+    "appc-cli-plugin",
+    "swagger"
   ],
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:appcelerator/api-connector-swagger.git"
+  },
   "scripts": {
     "start": "appc install && node ./app.js",
     "test": "grunt"
   },
   "private": true,
   "dependencies": {
-    "apibuilder": "^0.0.1",
+    "apibuilder": "git+ssh://git@github.com:appcelerator/api.git",
+    "appc-cli-core": "git+ssh://git@github.com:appcelerator/appc-cli-core.git",
     "async": "^0.9.0",
     "highlight.js": "^8.2.0",
+    "inquirer": "^0.6.0",
     "lodash": "^2.4.1",
     "pkginfo": "^0.3.0",
     "request": "^2.45.0",

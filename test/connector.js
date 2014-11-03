@@ -28,8 +28,19 @@ describe('Connector', function() {
 		});
 	});
 
-	after(function(next) {
-		connector.disconnect(next);
+	it('should be extensible', function() {
+		var name = 'com.extension.test',
+			ExtendedClass = Connector.extend({
+				config: { dynamicallyLoadModels: false },
+				name: name
+			}),
+			extendedInstance = new ExtendedClass();
+		should(extendedInstance).be.ok;
+		// Did our new properties get set correctly?
+		should(extendedInstance.name).equal(name);
+		should(extendedInstance.config.dynamicallyLoadModels).equal(false);
+		// Did inherited properties make it through, too?
+		should(extendedInstance.config.verbMap).be.an.Object;
 	});
 
 	it('should be able to fetch config', function(next) {
@@ -68,6 +79,10 @@ describe('Connector', function() {
 			});
 		});
 
+	});
+
+	after(function(next) {
+		connector.disconnect(next);
 	});
 
 });

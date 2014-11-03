@@ -1,4 +1,4 @@
-# appcelerator.swagger
+# appc.swagger
 
 Connect to Swagger defined APIs from API Builder.
 
