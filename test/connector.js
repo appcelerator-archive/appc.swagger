@@ -1,7 +1,5 @@
 var should = require('should'),
-	async = require('async'),
 	APIBuilder = require('apibuilder'),
-	log = APIBuilder.createLogger({}, { name: 'appcelerator.analytics (test)', useConsole: true, level: 'info' }),
 	config = new APIBuilder.Loader(),
 	Connector = require('../lib');
 
@@ -12,6 +10,7 @@ describe('Connector', function() {
 		FeedModel;
 
 	before(function(next) {
+		should(config.login).be.ok;
 		should.notEqual(config.login.username, 'YOUR_APPCELERATOR_USERNAME', 'Please configure a username and password!');
 		should.notEqual(config.login.password, 'YOUR_APPCELERATOR_PASSWORD', 'Please configure a username and password!');
 
