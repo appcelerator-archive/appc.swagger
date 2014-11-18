@@ -13,7 +13,7 @@ module.exports = {
 		return false;
 	},
 	getPrimaryKey: function(result) {
-		return result._id || result.id || result.Id;
+		return result._id || result.id || result.Id || result.guid;
 	},
 	handleResponse: function(err, body, next) {
 		if (err) {
