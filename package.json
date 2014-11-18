@@ -22,18 +22,17 @@
   },
   "private": true,
   "dependencies": {
-    "apibuilder": "git+ssh://git@github.com:appcelerator/api.git",
-    "appc-cli-core": "git+ssh://git@github.com:appcelerator/appc-cli-core.git",
+    "appc-cli-core": "*",
     "async": "^0.9.0",
     "highlight.js": "^8.2.0",
     "inquirer": "^0.6.0",
-    "lodash": "^2.4.1",
     "pkginfo": "^0.3.0",
     "request": "^2.45.0",
     "underscore.string": "^2.3.3"
   },
   "appcelerator": {},
   "devDependencies": {
+    "apibuilder": "*",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.10.0",

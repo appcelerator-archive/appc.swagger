@@ -1,7 +1,7 @@
 var should = require('should'),
 	APIBuilder = require('apibuilder'),
 	config = new APIBuilder.Loader(),
-	Connector = require('../lib');
+	Connector = require('../lib').create(APIBuilder);
 
 describe('Connector', function() {
 
