@@ -41,7 +41,4 @@ server.authorization = APIKeyAuthorization;
 // start the server
 server.start(function() {
 	server.logger.info('server started on port', server.port);
-	connector.connect(function(err) {
-		server.logger.info('connector', err || 'connected');
-	});
 });
