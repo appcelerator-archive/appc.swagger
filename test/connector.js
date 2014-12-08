@@ -1,12 +1,13 @@
 var should = require('should'),
-	APIBuilder = require('apibuilder'),
-	config = new APIBuilder.Loader(),
-	Connector = require('../lib').create(APIBuilder);
+	APIBuilder = require('appcelerator').apibuilder,
+	server = new APIBuilder(),
+	connector = server.getConnector('appc.swagger'),
+	Connector = require('../lib').create(APIBuilder, server),
+	config = new APIBuilder.Loader();
 
 describe('Connector', function() {
 
-	var connector,
-		AuthModel,
+	var AuthModel,
 		FeedModel;
 
 	before(function(next) {
@@ -14,7 +15,6 @@ describe('Connector', function() {
 		should.notEqual(config.login.username, 'YOUR_APPCELERATOR_USERNAME', 'Please configure a username and password!');
 		should.notEqual(config.login.password, 'YOUR_APPCELERATOR_PASSWORD', 'Please configure a username and password!');
 
-		connector = new Connector();
 		connector.connect(function(err) {
 			should(err).be.not.ok;
 
@@ -81,7 +81,7 @@ describe('Connector', function() {
 	});
 
 	after(function(next) {
-		connector.disconnect(next);
+		server.stop(next);
 	});
 
 });
