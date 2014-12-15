@@ -39,6 +39,4 @@ function APIKeyAuthorization(req, resp, next) {
 server.authorization = APIKeyAuthorization;
 
 // start the server
-server.start(function() {
-	server.logger.info('server started on port', server.port);
-});
+server.start();
