@@ -42,14 +42,6 @@ describe('Connector', function() {
 		should(extendedInstance.config.verbMap).be.an.Object;
 	});
 
-	it('should be able to fetch config', function(next) {
-		connector.fetchConfig(function(err, config) {
-			should(err).be.not.ok;
-			should(config).be.an.Object;
-			next();
-		});
-	});
-
 	it('should be able to fetch metadata', function(next) {
 		connector.fetchMetadata(function(err, meta) {
 			should(err).be.not.ok;
