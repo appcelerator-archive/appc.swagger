@@ -1,3 +1,5 @@
 node_modules
 logs
 .apibuilder
+*.tgz
+conf/local.js
