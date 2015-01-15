@@ -1,4 +1,4 @@
-# APIBuilder Connector for Swagger
+# API Builder Connector for Swagger
 
 > This software is pre-release and not yet ready for usage.  Please don't use this just yet while we're working through testing and finishing it up. Once it's ready, we'll make an announcement about it.
 
