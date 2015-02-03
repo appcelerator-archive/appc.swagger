@@ -32,7 +32,7 @@ module.exports = {
 	apikey: 'D4m7WdAi5XY05iotTOrXXWVqtfROYhy7',
 	admin: {
 		enabled: true,
-		prefix: '/apibuilder'
+		prefix: '/arrow'
 	},
 	session: {
 		encryptionAlgorithm: 'aes256',

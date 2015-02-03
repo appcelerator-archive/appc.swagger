@@ -1,9 +1,9 @@
 var should = require('should'),
-	APIBuilder = require('appcelerator').apibuilder,
-	server = new APIBuilder(),
+	Arrow = require('appcelerator').arrow,
+	server = new Arrow(),
 	connector = server.getConnector('appc.swagger'),
-	Connector = require('../lib').create(APIBuilder, server),
-	config = new APIBuilder.Loader();
+	Connector = require('../lib').create(Arrow, server),
+	config = new Arrow.Loader();
 
 describe('Connector', function() {
 
