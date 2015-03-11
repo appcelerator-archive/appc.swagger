@@ -1,7 +1,7 @@
 var should = require('should'),
-	Arrow = require('appcelerator').arrow,
+	Arrow = require('arrow'),
 	server = new Arrow(),
-	connector = server.getConnector('appc.swagger'),
+	connector = server.getConnector('appc.salesforce'),
 	Connector = require('../lib').create(Arrow, server),
 	config = new Arrow.Loader();
 
