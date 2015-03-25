@@ -2,3 +2,8 @@ node_modules
 logs
 conf/local.js
 .arrow
+*.tgz
+Gruntfile.js
+.jshintrc
+test
+node_modules
