@@ -1,7 +1,7 @@
 {
 	"name": "appc.swagger",
 	"description": "Connect to Swagger defined APIs from API Builder",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"author": "Dawson Toth",
 	"license": "",
 	"framework": "none",
@@ -18,7 +18,8 @@
 	},
 	"scripts": {
 		"start": "appc install && node ./app.js",
-		"test": "grunt"
+		"test": "grunt",
+		"preinstall": "node ./bin/update"
 	},
 	"private": true,
 	"dependencies": {
@@ -30,7 +31,8 @@
 		"underscore.string": "^2.3.3"
 	},
 	"devDependencies": {
-		"arrow": "*",
+		"arrow": "0.3.148",
+		"ensure-latest": "^1.0.3",
 		"grunt": "^0.4.5",
 		"grunt-contrib-clean": "^0.6.0",
 		"grunt-contrib-jshint": "^0.10.0",
@@ -38,5 +40,6 @@
 		"grunt-mocha-test": "^0.12.0",
 		"mocha": "^1.21.4",
 		"should": "^4.0.4"
-	}
+	},
+	"ensureLatest": [ "arrow" ]
 }
