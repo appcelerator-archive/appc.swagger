@@ -1,7 +1,7 @@
 {
 	"name": "appc.swagger",
 	"description": "Connect to Swagger defined APIs from API Builder",
-	"version": "1.0.14",
+	"version": "1.0.15",
 	"author": "Dawson Toth",
 	"license": "",
 	"framework": "none",
@@ -31,7 +31,7 @@
 		"underscore.string": "^2.3.3"
 	},
 	"devDependencies": {
-		"arrow": "0.3.148",
+		"arrow": "0.3.170",
 		"ensure-latest": "^1.0.3",
 		"grunt": "^0.4.5",
 		"grunt-contrib-clean": "^0.6.0",

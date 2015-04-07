@@ -1,5 +1,6 @@
 {
   "type": "connector",
+  "subtype": "arrow_connector_generator",
   "group": "arrow",
   "access": "public",
   "owners": [
