@@ -1,7 +1,7 @@
 {
 	"name": "appc.swagger",
 	"description": "Connect to Swagger defined APIs from API Builder",
-	"version": "1.0.15",
+	"version": "1.0.16",
 	"author": "Dawson Toth",
 	"license": "",
 	"framework": "none",
