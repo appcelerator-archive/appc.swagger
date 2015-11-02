@@ -4,6 +4,10 @@ This is a Arrow connector to any Swagger defined API.
 
 ## Installation
 
+You will need to customize the configuration file generated for you to include at least a "swaggerDocs" such as:
+
+    http://petstore.swagger.io/v2/swagger.json
+
 ```bash
 $ appc install connector/appc.swagger --save
 ```

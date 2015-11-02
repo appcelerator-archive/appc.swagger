@@ -1,27 +1,31 @@
 module.exports = {
-	// Configure connector.
-	swaggerDocs: '',
-	dynamicallyLoadModels: true,
-	connectors: {},
+	// Configure Connector.
+	connectors: {
+		'appc.swagger': {
+			swaggerDocs: '',
+			modelAutogen: true,
+			generateModelsFromSchema: true,
 
-	verbMap: {
-		POST: 'create',
-		GET: 'find',
-		PUT: 'update',
-		DELETE: 'delete'
-	},
-	canDiscover: function defaultCanDiscover(options, method) {
-		return false;
-	},
-	getPrimaryKey: function(result) {
-		return result._id || result.id || result.Id || result.guid;
-	},
-	handleResponse: function(err, body, next) {
-		if (err) {
-			next(err);
-		}
-		else {
-			next(null, body);
+			verbMap: {
+				POST: 'create',
+				GET: 'find',
+				PUT: 'update',
+				DELETE: 'delete'
+			},
+			canDiscover: function defaultCanDiscover(options, method) {
+				return false;
+			},
+			getPrimaryKey: function (result) {
+				return result._id || result.id || result.Id || result.guid;
+			},
+			handleResponse: function (err, body, next) {
+				if (err) {
+					next(err);
+				}
+				else {
+					next(null, body);
+				}
+			}
 		}
 	},
 

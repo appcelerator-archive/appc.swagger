@@ -1,21 +1,20 @@
 var should = require('should'),
 	Arrow = require('arrow'),
 	server = new Arrow(),
-	connector = server.getConnector('appc.salesforce'),
-	Connector = require('../lib').create(Arrow, server),
-	config = new Arrow.Loader();
+	connector = server.getConnector('appc.swagger'),
+	config = connector.config;
 
-describe('Connector', function() {
+describe('Connector', function () {
 
 	var AuthModel,
 		FeedModel;
 
-	before(function(next) {
+	before(function (next) {
 		should(config.login).be.ok;
 		should.notEqual(config.login.username, 'YOUR_APPCELERATOR_USERNAME', 'Please configure a username and password!');
 		should.notEqual(config.login.password, 'YOUR_APPCELERATOR_PASSWORD', 'Please configure a username and password!');
 
-		connector.connect(function(err) {
+		connector.connect(function (err) {
 			should(err).be.not.ok;
 
 			AuthModel = connector.getModel('Auth');
@@ -27,23 +26,8 @@ describe('Connector', function() {
 		});
 	});
 
-	it('should be extensible', function() {
-		var name = 'com.extension.test',
-			ExtendedClass = Connector.extend({
-				config: { dynamicallyLoadModels: false },
-				name: name
-			}),
-			extendedInstance = new ExtendedClass();
-		should(extendedInstance).be.ok;
-		// Did our new properties get set correctly?
-		should(extendedInstance.name).equal(name);
-		should(extendedInstance.config.dynamicallyLoadModels).equal(false);
-		// Did inherited properties make it through, too?
-		should(extendedInstance.config.verbMap).be.an.Object;
-	});
-
-	it('should be able to fetch metadata', function(next) {
-		connector.fetchMetadata(function(err, meta) {
+	it('should be able to fetch metadata', function (next) {
+		connector.fetchMetadata(function (err, meta) {
 			should(err).be.not.ok;
 			should(meta).be.an.Object;
 			should(Object.keys(meta)).containEql('fields');
@@ -51,18 +35,20 @@ describe('Connector', function() {
 		});
 	});
 
-	it('should be able to find all instances', function(next) {
+	it('should be able to find all instances', function (next) {
 
-		AuthModel.createLogin(config.login, function(err) {
+		AuthModel.createLogin(config.login, function (err) {
 			should(err).be.not.ok;
 
-			FeedModel.findAll(function(err, collection) {
+			FeedModel.findAll(function (err, collection) {
 				should(err).be.not.ok;
-				should(collection.length).be.greaterThan(0);
+				if (collection.length <= 0) {
+					return next();
+				}
 				var first = collection[0];
 				should(first.getPrimaryKey()).be.a.String;
 
-				FeedModel.findOne(first.getPrimaryKey(), function(err, feed) {
+				FeedModel.findOne(first.getPrimaryKey(), function (err, feed) {
 					should(err).be.not.ok;
 					should.equal(feed.getPrimaryKey(), first.getPrimaryKey());
 					next();
@@ -72,7 +58,7 @@ describe('Connector', function() {
 
 	});
 
-	after(function(next) {
+	after(function (next) {
 		server.stop(next);
 	});
 
