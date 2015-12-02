@@ -48,7 +48,7 @@ describe('Connector', function () {
 				var first = collection[0];
 				should(first.getPrimaryKey()).be.a.String;
 
-				FeedModel.findOne(first.getPrimaryKey(), function (err, feed) {
+				FeedModel.findByID(first.getPrimaryKey(), function (err, feed) {
 					should(err).be.not.ok;
 					should.equal(feed.getPrimaryKey(), first.getPrimaryKey());
 					next();
