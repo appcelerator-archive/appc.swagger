@@ -3,3 +3,4 @@ logs
 .arrow
 *.tgz
 conf/local.js
+coverage
