@@ -7,7 +7,7 @@ module.exports = {
 			// Create models based on your schema that can be used in your API.
 			generateModelsFromSchema: true,
 
-			// Whether or not to generate APIs based on the methods in generated models. 
+			// Whether or not to generate APIs based on the methods in generated models.
 			modelAutogen: false,
 
 			// Maps HTTP verbs to method names on your models.
@@ -29,27 +29,33 @@ module.exports = {
 				return false;
 			},
 
-			/*
-			 When we log in to your Swagger API, what username and password should we use? This is only used
-			 for auto-discovery.
+			/**
+			 * When we log in to your Swagger API, what authentication do we need to use? We can do basic authentication
+			 * or we can do API Key authentication.
 			 */
 			login: {
-				username: 'YOUR_APPCELERATOR_USERNAME',
-				password: 'YOUR_APPCELERATOR_PASSWORD'
+				//username: 'USERNAME',
+				//password: 'PASSWORD'
+				// OR
+				// apiKey: {
+				//     type: 'header', // or 'query'
+				//     name: 'API_KEY_NAME',
+				//     value: 'API_KEY'
+				// }
 			},
 
 			/**
 			 * Detect if the response is an error, or a successful response.
 			 */
-			handleResponse: function (err, body, next) {
+			 handleResponse: function (err, response, body, next) {
 				if (err) {
 					next(err);
 				}
-				else if (!body.success) {
+				else if ((body.hasOwnProperty('success') && !body.success) || (response.statusCode < 200 || response.statusCode > 299)) {
 					next(body);
 				}
 				else {
-					next(null, body.result);
+					next(null, body.hasOwnProperty('result') ? body.result : body);
 				}
 			},
 
@@ -58,18 +64,6 @@ module.exports = {
 			 */
 			getPrimaryKey: function (result) {
 				return result._id || result.id || result.Id || result.guid;
-			},
-
-			/**
-			 * Discovers fields from a successful response.
-			 * @param result
-			 * @returns {{foo: {type: Function}, bar: {type: Function}}}
-			 */
-			discoverFields: function discoverFields(result) {
-				return {
-					foo: {type: String},
-					bar: {type: Number}
-				};
 			}
 
 		}
