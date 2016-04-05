@@ -2,10 +2,13 @@ module.exports = {
 	// Configure Connector.
 	connectors: {
 		'appc.swagger': {
-			swaggerDocs: '',
+			swaggerDocs: 'http://dashboard.appcelerator.com/api/v1/api-docs.json',
 			modelAutogen: true,
 			generateModelsFromSchema: true,
-
+			login: {
+				username: 'YOUR_APPCELERATOR_USERNAME',
+				password: 'YOUR_APPCELERATOR_PASSWORD'
+			},
 			verbMap: {
 				POST: 'create',
 				GET: 'find',
@@ -18,12 +21,15 @@ module.exports = {
 			getPrimaryKey: function (result) {
 				return result._id || result.id || result.Id || result.guid;
 			},
-			handleResponse: function (err, body, next) {
+			handleResponse: function (err, response, body, next) {
 				if (err) {
 					next(err);
 				}
+				else if ((body.hasOwnProperty('success') && !body.success) || (response.statusCode < 200 || response.statusCode > 299)) {
+					next(body);
+				}
 				else {
-					next(null, body);
+					next(null, body.hasOwnProperty('result') ? body.result : body);
 				}
 			}
 		}
