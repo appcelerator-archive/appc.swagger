@@ -15,9 +15,6 @@ module.exports = {
 				PUT: 'update',
 				DELETE: 'delete'
 			},
-			canDiscover: function defaultCanDiscover(options, method) {
-				return false;
-			},
 			getPrimaryKey: function (result) {
 				return result._id || result.id || result.Id || result.guid;
 			},

@@ -19,17 +19,6 @@ module.exports = {
 			},
 
 			/**
-			 * Should we auto-discover payloads from your Swagger API? If this returns true for a particular method,
-			 * then the API will make sure you are logged in (using the credentials below) and then it will
-			 * introspectively set the fields on the model based on the response we receive.
-			 *
-			 * Hint: It's most useful to return true when doing a GET findAll.
-			 */
-			canDiscover: function defaultCanDiscover(options, method) {
-				return false;
-			},
-
-			/**
 			 * When we log in to your Swagger API, what authentication do we need to use? We can do basic authentication
 			 * or we can do API Key authentication.
 			 */
