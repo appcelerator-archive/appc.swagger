@@ -4,7 +4,7 @@ var should = require('should'),
 	connector,
 	config;
 
-describe('Connector', function () {
+describe.skip('Connector', function () {
 
 	var AuthModel,
 		FeedModel;
@@ -62,6 +62,12 @@ describe('Connector', function () {
 			});
 		});
 
+	});
+
+	it('should throw TypeError if callback function is not passed to API method call', function () {
+		(function () {
+			AuthModel.login(config.login);
+		}).should.throw();
 	});
 
 	after(function (next) {

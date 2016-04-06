@@ -5,7 +5,7 @@ var should = require('should'),
 	config;
 
 // Skip this test because when run in suite, only first swagger endpoint works.
-describe.skip('Petstore', function () {
+describe('Petstore', function () {
 
 	var PetModel,
 		OrderModel;
@@ -59,6 +59,12 @@ describe.skip('Petstore', function () {
 			});
 		});
 
+	});
+
+	it('should throw TypeError if callback function is not passed to API method call', function () {
+		(function () {
+			PetModel.findPetsByStatus({status: ['available']});
+		}).should.throw();
 	});
 
 	after(function (next) {
