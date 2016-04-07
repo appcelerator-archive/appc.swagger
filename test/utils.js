@@ -10,8 +10,13 @@ describe('Utils', function () {
 			utils.parseModelName('/2.1/pet').should.equal('Pet');
 		});
 
-		it('should Uppercase path segment', function () {
+		it('should use first path segment if not version', function () {
 			utils.parseModelName('/order/status/{orderId}').should.equal('Order');
+		});
+
+		it('should strip periods and underscores, convert to UppercaseCamelCase', function () {
+			utils.parseModelName('appc.salesforce_AcceptedEventRelation').should.equal('AppcSalesforceAcceptedEventRelation');
+			utils.parseModelName('appc.arrowdb_acl').should.equal('AppcArrowdbAcl');
 		});
 	});
 
