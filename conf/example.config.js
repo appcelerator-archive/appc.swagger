@@ -36,16 +36,20 @@ module.exports = {
 			/**
 			 * Detect if the response is an error, or a successful response.
 			 */
-			 handleResponse: function (err, response, body, next) {
+			handleResponse: function (err, response, body, next) {
 				if (err) {
-					next(err);
+					return next(err);
 				}
-				else if ((body.hasOwnProperty('success') && !body.success) || (response.statusCode < 200 || response.statusCode > 299)) {
-					next(body);
+				if (body.hasOwnProperty('success')) {
+					if (!body.success) {
+						return next(body);
+					}
+					if (body.hasOwnProperty('key') && body.key && body.hasOwnProperty(body.key)) {
+						return next(null, body[body.key]);
+					}
 				}
-				else {
-					next(null, body.hasOwnProperty('result') ? body.result : body);
-				}
+
+				next(null, body.hasOwnProperty('result') ? body.result : body);
 			},
 
 			/**
