@@ -40,16 +40,36 @@ module.exports = {
 				if (err) {
 					return next(err);
 				}
-				if (body.hasOwnProperty('success')) {
-					if (!body.success) {
-						return next(body);
+
+				// check if body exists first
+				if (typeof body === 'object') {
+					if (body.hasOwnProperty('success')) {
+						if (!body.success) {
+							return next(body);
+						}
+						if (body.hasOwnProperty('key') && body.key && body.hasOwnProperty(body.key)) {
+							return next(null, body[body.key]);
+						}
 					}
-					if (body.hasOwnProperty('key') && body.key && body.hasOwnProperty(body.key)) {
-						return next(null, body[body.key]);
-					}
+
+					return next(null, body.hasOwnProperty('result') ? body.result : body);
 				}
 
-				next(null, body.hasOwnProperty('result') ? body.result : body);
+				/**
+				 * On POST request the response status is 201 and the location of the created model is
+				 * in response.headers.location.
+				 */
+				if (response.statusCode === 201 && response.headers) {
+					/**
+					 * Extracts created object's id from the location header.
+					 * The location from response.headers.location follows the pattern {url}/{model}/{:id}
+					 * and we have to parse the id of the newly created object in order to return it like response.
+					 */
+					var locationArr = response.headers.location.split('/');
+					return next(null, { id: locationArr[locationArr.length - 1] });
+				}
+
+				return next(null, response);
 			},
 
 			/**
@@ -58,7 +78,6 @@ module.exports = {
 			getPrimaryKey: function (result) {
 				return result._id || result.id || result.Id || result.guid;
 			}
-
 		}
 	}
 };
