@@ -19,8 +19,8 @@ module.exports = {
 			},
 
 			/**
-			 * When we log in to your Swagger API, what authentication do we need to use? We can do basic authentication
-			 * or we can do API Key authentication.
+			 * When we retrieve your Swagger API spec, what authentication do we need
+			 * to use? We can do basic authentication or we can do API Key authentication.
 			 */
 			login: {
 				//username: 'USERNAME',
@@ -34,7 +34,56 @@ module.exports = {
 			},
 
 			/**
-			 * Detect if the response is an error, or a successful response.
+			 * Mapping of swagger security definitions to authentication providers
+			 */
+			authenticationProvider: {
+				/*
+				// Api key
+				api_key: {
+					value: 'special-key'
+				},
+
+				// Basic
+				basic: {
+					username: 'boblee',
+					password: 'swagger'
+				},
+
+				// Oauth password flow example
+				oauth_pass: {
+					client_id: 'id',
+					client_secret: 'super_secret',
+					username: 'boblee',
+					password: 'swagger',
+					// Sets the content type all oauth requests use to encode their body.
+					// Can be 'form' or 'json', defaults to 'form' if not set.
+					requestContentType: 'json'
+				},
+
+				// Oauth application/client credential flow example
+				oauth_client: {
+					client_id: 'id',
+					client_secret: 'super_secret',
+					// If your server does not provide the expires_in key for new access tokens
+					// you can set a default expiry time in seconds here. If not specified
+					// AND the expires_in key is missing, a default of 3600 will be used
+					defaultAccessTokenExpiryTime: 7200,
+					// Same as above but for refresh tokens. If you ommit this it will be assumed
+					// the refresh token is a long lasting token without any expiry time.
+					defaultRefreshTokenExpiryTime: 1209600
+				}
+				*/
+			},
+
+			/**
+			 * Handles a response from your API before this connector further processes
+			 * it and tries to create the models from that response.
+			 *
+			 * Here you can detect if the response is an error or a successful
+			 * response and do any required transformation to the response. This
+			 * example implementation should work with most APIs and also includes
+			 * some special cases for when use the generated Swagger definition from
+			 * another Arrow API.
 			 */
 			handleResponse: function (err, response, body, next) {
 				if (err) {
