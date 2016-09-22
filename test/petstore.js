@@ -44,7 +44,7 @@ describe('Petstore', function () {
 	it('should be able to find all instances', function (next) {
 
 		PetModel.findPetsByStatus({status: ['available']}, function (err, collection) {
-			should(err).be.not.ok;
+			should.ifError(err);
 
 			if (collection.length <= 0) {
 				return next();
