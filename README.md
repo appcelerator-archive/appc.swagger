@@ -8,7 +8,7 @@ Just enter the following command in your arrow project root to install the
 Swagger connector.
 
 ```bash
-appc install connector/appc.swagger --save
+appc install connector/appc.swagger
 ```
 
 ## Usage
