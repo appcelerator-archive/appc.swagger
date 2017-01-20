@@ -4,3 +4,4 @@ logs
 *.tgz
 conf/local.js
 coverage
+.vscode
