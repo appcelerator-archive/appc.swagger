@@ -8,6 +8,7 @@ var should = require('should'),
 describe('Petstore', function () {
 
 	var PetModel,
+		UserModel,
 		OrderModel;
 
 	before(function (next) {
@@ -25,6 +26,8 @@ describe('Petstore', function () {
 
 			PetModel = connector.getModel('Pet');
 			should(PetModel).be.ok;
+			UserModel = connector.getModel('User');
+			should(UserModel).be.ok;
 			OrderModel = connector.getModel('Order');
 			should(OrderModel).be.ok;
 
@@ -57,6 +60,19 @@ describe('Petstore', function () {
 				should.equal(pet.getPrimaryKey(), first.getPrimaryKey());
 				next();
 			});
+		});
+
+	});
+
+	//[ARRSOF-213] appc.swagger: Invoking petstore login kills arrow
+	it('should be able to login as a user', function (next) {
+
+		UserModel.loginUser({user: 'user1', pass: 'string'}, function (err, resp) {
+			should.ifError(err);
+
+			should(resp).be.ok;
+			should(resp).be.a.String;
+			next();
 		});
 
 	});
