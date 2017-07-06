@@ -21,8 +21,17 @@
 	},
 	"scripts": {
 		"start": "appc run",
-		"test": "grunt"
+		"test": "grunt",
+    "build": "npm run clean && npm run build:dev && npm run security",
+    "build:dev": "npm run build:dist",
+    "build:dist": "babel -d ./dist ./lib",
+		"clean": "rimraf ./tmp && rimraf dist/* coverage/*",
+    "security": "retire --exitwith 0 --outputpath scan-retire.json && nsp check --output json > scan-nsp.json"
 	},
+	"files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
 	"private": true,
 	"dependencies": {
 		"async": "^0.9.0",
@@ -35,6 +44,12 @@
 	},
 	"devDependencies": {
 		"arrow": "^*",
+		"babel-cli": "^6.11.4",
+    "babel-core": "^6.0.0",
+    "babel-istanbul": "^0.12.1",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-stage-2": "^6.22.0",
 		"grunt": "^0.4.5",
 		"grunt-appc-js": "^1.0.19",
 		"grunt-contrib-clean": "^0.6.0",
