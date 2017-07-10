@@ -28,10 +28,6 @@
 		"clean": "rimraf ./tmp && rimraf dist/* coverage/*",
     "security": "retire --exitwith 0 --outputpath scan-retire.json && nsp check --output json > scan-nsp.json"
 	},
-	"files": [
-    "dist"
-  ],
-  "main": "dist/index.js",
 	"private": true,
 	"dependencies": {
 		"async": "^0.9.0",
