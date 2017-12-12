@@ -3,7 +3,7 @@
  * be used or packaged with the actual connector when published.
  */
 var Arrow = require('arrow'),
-	server = new Arrow(),
-	connector = server.getConnector('appc.swagger');
+  server = new Arrow(),
+  connector = server.getConnector('appc.swagger')
 
-server.start();
+server.start()
