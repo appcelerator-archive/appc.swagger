@@ -1,7 +1,7 @@
 {
  "name": "appc.swagger",
  "description": "Connect to Swagger defined APIs from API Builder",
- "version": "1.1.10",
+ "version": "1.1.10-1",
  "author": {
   "email": "support@axway.com",
   "name": "Axway R&D",
@@ -76,7 +76,7 @@
   "test:unit": "tap test/unit/* --bail --coverage-report=html | tap-mocha-reporter spec",
   "test:integration": "grunt",
   "posttest": "nyc check-coverage --lines 80 --branches 80 --functions 80 || exit 0",
-  "release:publish": "git add -A && git push && git push --tags && npm publish",
+  "release:publish": "git add -A && git push origin HEAD:master && git push --tags && npm publish",
   "release:major": "npm version major && npm run release:publish && git push --follow-tags",
   "release:minor": "npm version minor && npm run release:publish && git push --follow-tags",
   "release:patch": "npm version patch && npm run release:publish && git push --follow-tags",
